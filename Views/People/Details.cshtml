@@ -1,0 +1,68 @@
+﻿@model Business.Models.People.Person
+
+@{
+    ViewBag.Title = "Person Details";
+	int currentPageNumber = ViewBag.CurrentPageNumber;
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+	        <div class="d-flex mb-3">
+		        <p>
+			        @Html.ActionLink(
+				        "Back to List",
+				        "Index",
+				        new { page = currentPageNumber }, // Add query string parameters
+				        new { @class = "btn btn-primary" }
+				        )
+		        </p>&nbsp;&nbsp;&nbsp;<h2>Person Details</h2>
+	        </div>
+
+	        <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <th>Height</th>
+                        <td>@Model.Properties.Height</td>
+                    </tr>
+                    <tr>
+                        <th>Mass</th>
+                        <td>@Model.Properties.Mass</td>
+                    </tr>
+                    <tr>
+                        <th>Hair Color</th>
+                        <td>@Model.Properties.HairColor</td>
+                    </tr>
+                    <tr>
+                        <th>Skin Color</th>
+                        <td>@Model.Properties.SkinColor</td>
+                    </tr>
+                    <tr>
+                        <th>Eye Color</th>
+                        <td>@Model.Properties.EyeColor</td>
+                    </tr>
+                    <tr>
+                        <th>Birth Year</th>
+                        <td>@Model.Properties.BirthYear</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>@Model.Properties.Gender</td>
+                    </tr>
+                    <tr>
+                        <th>Home World</th>
+                        <td>@Model.Properties.HomeWorld</td>
+                    </tr>
+                    <tr>
+                        <th>Url</th>
+                        <td>@Model.Url</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

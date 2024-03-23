@@ -1,0 +1,61 @@
+﻿@model Business.Models.People.PeopleList
+
+@{
+    ViewBag.Title = "People";
+    int pageSize = 10;
+    int currentPageNumber = ViewBag.CurrentPageNumber;
+    int previousPageNumber = currentPageNumber > 1 ? currentPageNumber - 1 : 1;
+    int nextPageNumber = currentPageNumber < Model.TotalPages ? currentPageNumber + 1 : currentPageNumber;
+}
+
+<h2 class="text-center">Star Wars People List</h2>
+
+<div class="table-responsive-md mx-auto" style="max-width: 800px;">
+    <table class="table table-bordered table-striped mx-auto">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-3">Name</th>
+                <th class="col-2 text-center">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model.Results)
+            {
+                <tr>
+                    <td class="col-3">@person.Name</td>
+                    <td class="col-2 text-center">
+	                    <a href="@Url.Action("Details", "People", new { url = person.Url, pageNumber = currentPageNumber })" class="btn btn-warning btn-sm">
+		                    Details
+	                    </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-3 d-flex justify-content-center">
+    <div class="btn-group" role="group">
+        @if (Model.Previous != null)
+        {
+            <a href="@Url.Action("Index", new { page = previousPageNumber })" class="btn btn-primary">
+                Previous
+            </a>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" disabled>Previous</button>
+        }
+
+        @if (Model.Next != null)
+        {
+            <a href="@Url.Action("Index", new { page = nextPageNumber })" class="btn btn-primary">
+                Next
+            </a>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" disabled>Next</button>
+        }
+    </div>
+</div>
